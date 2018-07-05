@@ -62,7 +62,7 @@ namespace SlamBot
             var time = DateTime.Now.ToString();
 
             Console.WriteLine($"[{time}] {text}");
-            File.WriteAllText("log.txt", $"[{time}] {text}\n");
+            File.AppendAllText("log.txt", $"[{time}] {text}\n");
         }
     }
 }
