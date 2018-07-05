@@ -24,8 +24,8 @@ namespace SlamBot
 
                     foreach(var a in slams)
                     {
-                        Log($"   TWEET: {a.Title}");
-                        Twitter.Tweet($"{MessageRandomizer.GetMessage()}\n\n{a.Url}");
+                        var tweet = Twitter.Tweet($"{MessageRandomizer.GetMessage()}\n\n{a.Url}");
+                        Log($"   TWEET: {a.Title} => {tweet.Url}");
                     }
                 }
                 catch (Exception e)

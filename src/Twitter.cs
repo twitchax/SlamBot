@@ -1,4 +1,5 @@
 using Tweetinvi;
+using Tweetinvi.Models;
 
 namespace SlamBot
 {
@@ -9,9 +10,9 @@ namespace SlamBot
             Auth.SetUserCredentials(Secrets.TwitterConsumerKey, Secrets.TwitterConsumerSecret, Secrets.TwitterUserToken, Secrets.TwitterUserSecret);
         }
 
-        internal static void Tweet(string message)
+        internal static ITweet Tweet(string message)
         {
-            Tweetinvi.Tweet.PublishTweet(message);
+            return Tweetinvi.Tweet.PublishTweet(message);
         }
     }
 }
