@@ -51,7 +51,7 @@ namespace SlamBot
 
             return newsResponse.Articles
                 .Where(
-                    a => a.Title.Contains(query) && 
+                    a => a.Title.ToLower().Contains(query) && 
                     now - a.PublishedAt > TimeSpan.FromMinutes(0) && 
                     now - a.PublishedAt < TimeSpan.FromMinutes(windowInMinutes)
                 );
