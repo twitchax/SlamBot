@@ -25,7 +25,7 @@ namespace SlamBot
                     Log($"Getting news within last {windowInMinutes} minutes ...");
                     var slams = await GetLatestNews(query, windowInMinutes);
 
-                    foreach(var s in slams)
+                    foreach(var s in slams.Reverse())
                     {
                         // Check inside loop in case two articles came back in the same request.
                         if(titles.Contains(s.Title))
