@@ -13,7 +13,7 @@ namespace SlamBot
         static async Task Main(string[] args)
         {
             var query = "slams";
-            var refreshRateInMinutes = 5;
+            var refreshRateInMinutes = 60;
             
             while(true)
             {
@@ -30,7 +30,8 @@ namespace SlamBot
                 }
                 catch (Exception e)
                 {
-                    Log($"   FAILURE.\n\n{e.Message}\n\n{e.StackTrace}\n");
+                    var ex = e.UnwindException();
+                    Log($"   FAILURE.\n\n{ex.Message}\n{ex.StackTrace}\n");
                 }
                 finally
                 {
@@ -48,7 +49,7 @@ namespace SlamBot
             var jsonString = await new StreamReader(response.GetResponseStream()).ReadToEndAsync();
 
             var newsResponse = NewsResponse.Parse(jsonString);
-
+            
             return newsResponse.Articles
                 .Where(
                     a => a.Title.ToLower().Contains(query) && 
@@ -59,7 +60,7 @@ namespace SlamBot
 
         static void Log(string text)
         {
-            var time = DateTime.Now.ToString();
+            var time = DateTime.Now.ToUniversalTime().ToString();
 
             Console.WriteLine($"[{time}] {text}");
             File.AppendAllText("log.txt", $"[{time}] {text}\n");

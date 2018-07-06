@@ -1,0 +1,17 @@
+<Directives>
+    <Application>
+        <Assembly Name="Newtonsoft.Json" Dynamic="Required All" />
+        <Assembly Name="Tweetinvi.Logic" Dynamic="Required All" />
+        <Assembly Name="Tweetinvi.Credentials" Dynamic="Required All" />
+        <Assembly Name="Tweetinvi.WebLogic" Dynamic="Required All" />
+        <Assembly Name="Tweetinvi.Factories" Dynamic="Required All" />
+        <Assembly Name="Tweetinvi.Controllers" Dynamic="Required All" />
+        <Assembly Name="Tweetinvi.Core" Dynamic="Required All">
+            <Type Name="Tweetinvi.Core.Injectinvi.Factory`1[[Tweetinvi.Core.Exceptions.ITwitterExceptionInfo,Tweetinvi.Core]]" Dynamic="Required All" />
+            <Type Name="Tweetinvi.Core.Events.WeakEvent`1[[System.EventHandler`1[[Tweetinvi.Events.QueryAwaitingEventArgs,Tweetinvi.Core]],System.Private.CoreLib]]" Dynamic="Required All" />
+        </Assembly>
+        <Assembly Name="System.Linq.Expressions">
+            <Type Name="System.Linq.Expressions.ExpressionCreator`1[[System.Func`2[[System.Object,System.Private.CoreLib],[System.Object,System.Private.CoreLib]],System.Private.CoreLib]]" Dynamic="Required All" />
+        </Assembly>
+    </Application>
+</Directives>
