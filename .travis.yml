@@ -1,0 +1,21 @@
+sudo: required
+language: csharp
+mono: none
+dotnet: 2.0.0
+dist: trusty
+
+services:
+ - docker
+ 
+before_install:
+ - sudo apt-get update
+ - sudo apt-get install docker-ce
+
+script:
+ - docker build -t twitchax/slambot:$TRAVIS_COMMIT .
+
+after_success:
+ - echo "$DOCKER_PASS" | docker login -u $DOCKER_USER
+ - docker push twitchax/slambot:$TRAVIS_COMMIT
+ - docker tag twitchax/slambot:$TRAVIS_COMMIT twitchax/slambot
+ - docker push twitchax/slambot
