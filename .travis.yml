@@ -15,7 +15,7 @@ script:
  - docker build -t twitchax/slambot:$TRAVIS_COMMIT .
 
 after_success:
- - echo "$DOCKER_PASS" | docker login -u $DOCKER_USER
+ - echo "$DOCKER_PASS" | docker login -u $DOCKER_USER --password-stdin
  - docker push twitchax/slambot:$TRAVIS_COMMIT
  - docker tag twitchax/slambot:$TRAVIS_COMMIT twitchax/slambot
  - docker push twitchax/slambot
