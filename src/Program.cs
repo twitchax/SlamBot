@@ -13,7 +13,7 @@ namespace SlamBot
         static async Task Main(string[] args)
         {
             var query = "slams";
-            var refreshRateInMinutes = 5;
+            var refreshRateInMinutes = 2;
             var windowInMinutes = 120;
 
             var titles = new HashSet<string>();
@@ -31,7 +31,7 @@ namespace SlamBot
                         if(titles.Contains(s.Title))
                             continue;
                         
-                        var tweet = Twitter.Tweet($"{MessageRandomizer.GetMessage()}\n\n{s.Url}");
+                        var tweet = Twitter.Tweet($"{MessageRandomizer.GetMessage()}\n\nPowered by NewsAPI.org.\n\n{s.Url}");
                         titles.Add(s.Title);
 
                         Log($"   TWEET: {s.Title} => {tweet.Url}.");
