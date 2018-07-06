@@ -31,7 +31,7 @@ namespace SlamBot
                         if(titles.Contains(s.Title))
                             continue;
                         
-                        var tweet = Twitter.Tweet($"{MessageRandomizer.GetMessage()}\n\nPowered by NewsAPI.org.\n\n{s.Url}");
+                        var tweet = Twitter.Tweet($"{MessageRandomizer.GetMessage()}\n\nPowered by @NewsAPIorg.\n\n{s.Url}");
                         titles.Add(s.Title);
 
                         Log($"   TWEET: {s.Title} => {tweet.Url}.");
