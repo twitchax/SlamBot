@@ -13,7 +13,7 @@ namespace SlamBot
         static async Task Main(string[] args)
         {
             var query = "slams";
-            var refreshRateInMinutes = 60;
+            var refreshRateInMinutes = 5;
             
             while(true)
             {
@@ -25,13 +25,13 @@ namespace SlamBot
                     foreach(var a in slams)
                     {
                         var tweet = Twitter.Tweet($"{MessageRandomizer.GetMessage()}\n\n{a.Url}");
-                        Log($"   TWEET: {a.Title} => {tweet.Url}");
+                        Log($"   TWEET: {a.Title} => {tweet.Url}.");
                     }
                 }
                 catch (Exception e)
                 {
                     var ex = e.UnwindException();
-                    Log($"   FAILURE.\n\n{ex.Message}\n{ex.StackTrace}\n");
+                    Log($"   FAILURE:\n\n{ex.Message}\n{ex.StackTrace}\n");
                 }
                 finally
                 {
