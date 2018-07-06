@@ -14,18 +14,27 @@ namespace SlamBot
         {
             var query = "slams";
             var refreshRateInMinutes = 5;
+            var windowInMinutes = 120;
+
+            var titles = new HashSet<string>();
             
             while(true)
             {
                 try
                 {
-                    Log($"Getting news within last {refreshRateInMinutes} minutes ...");
-                    var slams = await GetLatestNews(query, refreshRateInMinutes);
+                    Log($"Getting news within last {windowInMinutes} minutes ...");
+                    var slams = await GetLatestNews(query, windowInMinutes);
 
-                    foreach(var a in slams)
+                    foreach(var s in slams)
                     {
-                        var tweet = Twitter.Tweet($"{MessageRandomizer.GetMessage()}\n\n{a.Url}");
-                        Log($"   TWEET: {a.Title} => {tweet.Url}.");
+                        // Check inside loop in case two articles came back in the same request.
+                        if(titles.Contains(s.Title))
+                            continue;
+                        
+                        var tweet = Twitter.Tweet($"{MessageRandomizer.GetMessage()}\n\n{s.Url}");
+                        titles.Add(s.Title);
+
+                        Log($"   TWEET: {s.Title} => {tweet.Url}.");
                     }
                 }
                 catch (Exception e)
