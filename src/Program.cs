@@ -14,7 +14,7 @@ namespace SlamBot
         {
             var query = "slams";
             var refreshRateInMinutes = 2;
-            var windowInMinutes = 120;
+            var startTime = DateTime.Now;
 
             var titles = new HashSet<string>();
             
@@ -22,6 +22,8 @@ namespace SlamBot
             {
                 try
                 {
+                    var windowInMinutes = Math.Min(120, (DateTime.Now - startTime).Minutes);
+                    
                     Log($"Getting news within last {windowInMinutes} minutes ...");
                     var slams = await GetLatestNews(query, windowInMinutes);
 
