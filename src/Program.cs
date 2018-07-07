@@ -16,25 +16,25 @@ namespace SlamBot
             var refreshRateInMinutes = 2;
             var startTime = DateTime.Now;
 
-            var titles = new HashSet<string>();
+            var urls = new HashSet<string>();
             
             while(true)
             {
                 try
                 {
-                    var windowInMinutes = Math.Min(120, (DateTime.Now - startTime).Minutes);
+                    var windowInMinutes = Math.Min(120, (int)(DateTime.Now - startTime).TotalMinutes);
                     
                     Log($"Getting news within last {windowInMinutes} minutes ...");
                     var slams = await GetLatestNews(query, windowInMinutes);
-
+                    
                     foreach(var s in slams.Reverse())
                     {
                         // Check inside loop in case two articles came back in the same request.
-                        if(titles.Contains(s.Title))
+                        if(urls.Contains(s.Url))
                             continue;
                         
                         var tweet = Twitter.Tweet($"{MessageRandomizer.GetMessage()}\n\nPowered by @NewsAPIorg.\n\n{s.Url}");
-                        titles.Add(s.Title);
+                        urls.Add(s.Url);
 
                         Log($"   TWEET: {s.Title} => {tweet.Url}.");
                     }
@@ -64,7 +64,6 @@ namespace SlamBot
             return newsResponse.Articles
                 .Where(
                     a => a.Title.ToLower().Contains(query) && 
-                    now - a.PublishedAt > TimeSpan.FromMinutes(0) && 
                     now - a.PublishedAt < TimeSpan.FromMinutes(windowInMinutes)
                 );
         }

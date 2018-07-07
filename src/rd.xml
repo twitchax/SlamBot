@@ -1,6 +1,8 @@
 <Directives>
     <Application>
-        <Assembly Name="Newtonsoft.Json" Dynamic="Required All" />
+        <Assembly Name="Newtonsoft.Json" Dynamic="Required All">
+            <Type Name="Newtonsoft.Json.Utilities.CollectionWrapper`1[[System.Int32,System.Private.CoreLib]]" Dynamic="Required All" />
+        </Assembly>
         <Assembly Name="Tweetinvi.Logic" Dynamic="Required All" />
         <Assembly Name="Tweetinvi.Credentials" Dynamic="Required All" />
         <Assembly Name="Tweetinvi.WebLogic" Dynamic="Required All" />
