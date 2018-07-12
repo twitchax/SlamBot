@@ -1,5 +1,6 @@
 
 using System;
+using System.Text;
 
 namespace SlamBot
 {
@@ -13,6 +14,21 @@ namespace SlamBot
             }
 
             return e;
+        }
+
+        internal static string UnwindExceptionAsString(this Exception e)
+        {
+            var sb = new StringBuilder();
+
+            sb.Append($"\n{e.Message}\n{e.StackTrace}\n");
+
+            while(e.InnerException != null)
+            {
+                e = e.InnerException;
+                sb.Append($"\n{e.Message}\n{e.StackTrace}\n");
+            }
+
+            return sb.ToString();
         }
     }
 }

@@ -41,8 +41,7 @@ namespace SlamBot
                 }
                 catch (Exception e)
                 {
-                    var ex = e.UnwindException();
-                    Log($"   FAILURE:\n\n{ex.Message}\n{ex.StackTrace}\n");
+                    Log($"   FAILURE:\n{e.UnwindExceptionAsString()}\n");
                 }
                 finally
                 {
