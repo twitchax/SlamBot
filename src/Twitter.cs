@@ -14,9 +14,14 @@ namespace SlamBot
             Auth.SetUserCredentials(Secrets.TwitterConsumerKey, Secrets.TwitterConsumerSecret, Secrets.TwitterUserToken, Secrets.TwitterUserSecret);
         }
 
-        internal static ITweet Tweet(string message)
+        internal static ITweet PublishTweet(string message)
         {
-            return Tweetinvi.Tweet.PublishTweet(message);
+            var tweet = Tweet.PublishTweet(message);
+
+            if(tweet == null)
+                throw new Exception(ExceptionHandler.GetLastException().TwitterDescription);
+
+            return tweet;
         }
 
         internal static IEnumerable<ITweet> GetRecentTweets()
