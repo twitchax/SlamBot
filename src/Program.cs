@@ -38,8 +38,9 @@ namespace SlamBot
                             continue;
                         
                         var tweet = Twitter.Tweet($"{MessageRandomizer.GetMessage()}\n\nPowered by @NewsAPIorg.\n\n{s.Url}");
+                        Log($"   IsNull(tweet) == {tweet == null}");
                         urls.Add(s.Url);
-
+                        Log($"   IsNull(tweet.Url) == {tweet.Url == null}");
                         Log($"   TWEET: {s.Title} => {tweet.Url}.");
                     }
                 }
