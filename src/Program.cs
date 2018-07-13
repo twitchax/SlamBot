@@ -29,6 +29,11 @@ namespace SlamBot
                     
                     foreach(var s in slams.Reverse())
                     {
+                        // Temporary for CoreRT debugging.
+                        Log($"   IsNull(s) == {s == null}");
+                        Log($"   IsNull(urls) == {urls == null}");
+                        Log($"   IsNull(s.Url) == {s.Url == null}");
+
                         // Check inside loop in case two articles came back in the same request.
                         if(urls.Contains(s.Url))
                             continue;
