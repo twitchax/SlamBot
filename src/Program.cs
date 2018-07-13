@@ -13,8 +13,7 @@ namespace SlamBot
         static async Task Main(string[] args)
         {
             var query = "slams";
-            var refreshRateInMinutes = 2;
-            var startTime = DateTime.Now;
+            var refreshRateInMinutes = Settings.RefreshRateInMinutes;
 
             var urls = new HashSet<string>();
             
@@ -22,7 +21,7 @@ namespace SlamBot
             {
                 try
                 {
-                    var windowInMinutes = Math.Min(120, (int)(DateTime.Now - startTime).TotalMinutes);
+                    var windowInMinutes = Settings.WindowInMinutes;
                     
                     Log($"Getting news within last {windowInMinutes} minutes ...");
                     var slams = await GetLatestNews(query, windowInMinutes);
