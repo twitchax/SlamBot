@@ -32,7 +32,7 @@ namespace SlamBot
                         if(urls.Contains(s.Url))
                             continue;
                         
-                        var tweet = Twitter.PublishTweet($"{MessageRandomizer.GetMessage()}\n\nPowered by @NewsAPIorg.\n\n{s.Url}");
+                        var tweet = Twitter.PublishTweet($"{MessageRandomizer.GetMessage()}\n\nPowered by NewsAPI.org.\n\n{s.Url}");
                         urls.Add(s.Url);
 
                         Log($"   TWEET: {s.Title} => {tweet.Url}.");
